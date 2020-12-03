@@ -262,7 +262,6 @@ for yi, y in enumerate(y_test):
     if y == 1:
         list.append(x_test[yi])
 list = np.array(list)
-#123456
 x_y_test_ds_1 = tf.data.Dataset.from_tensor_slices(
     (list, np.array([1 for i in range(list.shape[0])]))).shuffle(10000).batch(32)
 model.set_data(train_ds=None, test_ds=x_y_test_ds_1)
