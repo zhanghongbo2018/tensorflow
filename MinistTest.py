@@ -12,11 +12,12 @@ from random import shuffle
 class MyModel(Model):
     def __init__(self):
         super(MyModel, self).__init__()
-        self.conv1 = Conv2D(32, 3, activation='relu', autocast=False, dtype=float)
+        self.conv1 = Conv2D(32, 3, activation='relu', autocast=False, dtype=tf.float32)
         self.flatten = Flatten(autocast=False)
-        self.d1 = Dense(128, activation='relu', autocast=False, dtype=float)
-        self.d2 = Dense(10, activation='softmax', autocast=False, dtype=float)
+        self.d1 = Dense(128, activation='relu', autocast=False, dtype=tf.float32)
+        self.d2 = Dense(10, activation='softmax', autocast=False, dtype=tf.float32)
         self.loss_object = tf.keras.losses.SparseCategoricalCrossentropy()
+        #自定义优化器
         self.optimizer = tf.keras.optimizers.SGD()
         self.train_loss = tf.keras.metrics.Mean(name='train_loss')
         self.train_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(name='train_accuracy')
